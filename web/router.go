@@ -31,6 +31,9 @@ func NewRouter() *gin.Engine {
 	ArticleAPI.GET("query", handlers.QueryArticle)
 	ArticleAPI.GET("create", handlers.QueryArticle)
 
+	RobotAPI := v1API.Group("/robot")
+	RobotAPI.GET("query", )
+
 	return router
 }
 
