@@ -22,17 +22,18 @@ func NewRouter() *gin.Engine {
 
 	// router.NoRoute(middlewares.Default404)
 
+	v0API := router.Group("/apis/bbs/v0")
+	swaggerHandlers.RegisterSwagger(v0API)
+	RobotAPI := v0API.Group("/bbs")
+	RobotAPI.GET("query", handlers.QueryBBS)
+
 	v1API := router.Group("/apis/bbs/v1")
 	swaggerHandlers.RegisterSwagger(v1API)
-
 	// // Artciles APIs.
 	ArticleAPI := v1API.Group("/article")
 	ArticleAPI.GET("list", handlers.ListArticle)
 	ArticleAPI.GET("query", handlers.QueryArticle)
 	ArticleAPI.GET("create", handlers.QueryArticle)
-
-	RobotAPI := v1API.Group("/robot")
-	RobotAPI.GET("query", )
 
 	return router
 }

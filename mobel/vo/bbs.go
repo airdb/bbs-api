@@ -1,5 +1,20 @@
 package vo
 
+import "github.com/airdb/bbs-api/mobel/po"
+
+type QueryBBSReq struct {
+	QQ      uint   `form:"qq"`
+	Group   uint   `form:"group"`
+	Command string `form:"command"`
+	Message string `form:"message"`
+}
+
+type QueryBBSResp string
+
+func QueryBBSByKeyword(keyword string) ([]*po.Article){
+	return po.QueryBBSByKeywords(keyword)
+}
+
 /*
 package models
 
@@ -98,4 +113,4 @@ func SyncPictureFromBbs (tid, pid int64,  babyid, uuid string) () {
 	}
 	return
 }
- */
+*/
