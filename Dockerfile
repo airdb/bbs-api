@@ -2,19 +2,34 @@
 FROM golang
 MAINTAINER info@airdb.com
 
-WORKDIR  /go/src/github.com/airdb/dns-api
+ENV PROJ=bbs-api
+ENV BIN=main
+ENV GITHUB=github.com/airdb/${PROJ}
+ENV BUILDDIR=/go/src/${GITHUB}
+ENV DEPLOYDIR=/srv/${PROJ}
+ENV RUNBIN=${DEPLOYDIR}/${BIN}
 
-ADD . $WORKDIR
+WORKDIR ${BUILDDIR}
+
+ADD . ${BUILDDIR}
 
 RUN go get -u github.com/swaggo/swag/cmd/swag && \
 	GO111MODULE=off swag init -g web/router.go && \
-	go build -o dns-api main.go
+	go build -o main main.go
 
-# Stage 2: Copy the binary from the builder stage
+# Stage 2: Release the binary from the builder stage
 FROM ubuntu
-COPY --from=0 /go/src/github.com/airdb/dns-api /srv/
+
+ENV PROJ=bbs-api
+ENV BIN=main
+ENV GITHUB=github.com/airdb/${PROJ}
+ENV BUILDDIR=/go/src/${GITHUB}
+ENV DEPLOYDIR=/srv/${PROJ}
+ENV RUNBIN=${DEPLOYDIR}/${BIN}
+
+COPY --from=0 ${BUILDDIR}/ ${DEPLOYDIR}
 
 EXPOSE 8080
 
-WORKDIR  /srv
-CMD ["/srv/dns-api"]
+WORKDIR ${DEPLOYDIR}
+CMD [${RUNBIN}]
