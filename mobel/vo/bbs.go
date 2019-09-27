@@ -11,7 +11,7 @@ type QueryBBSReq struct {
 
 type QueryBBSResp string
 
-func QueryBBSByKeyword(keyword string) ([]*po.Article){
+func QueryBBSByKeyword(keyword string) []*po.Article {
 	return po.QueryBBSByKeywords(keyword)
 }
 

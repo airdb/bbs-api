@@ -45,15 +45,20 @@ func QueryBBSByKeywords(keyword string) (articles []*Article) {
 		keys[0] = "%" + keys[0] + "%"
 		keys[1] = "%" + keys[1] + "%"
 		keys[2] = "%" + keys[2] + "%"
-		// conn.Debug().Where("subject like ? and subject like ? and subject like ? ", keys[0], keys[1], keys[2]).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
+		dbutils.ReadDB(DBName).Table("articles").Where(
+			"subject like ? and subject like ? and subject like ? ", keys[0], keys[1], keys[2],
+		).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
 	} else if len(keys) == 2 {
 		keys[0] = "%" + keys[0] + "%"
 		keys[1] = "%" + keys[1] + "%"
-		// conn.Debug().Where("subject like ? and subject like ? ", keys[0], keys[1]).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
+		dbutils.ReadDB(DBName).Table("articles").Where(
+			"subject like ? and subject like ? ", keys[0], keys[1],
+		).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
 	} else {
 		keys[0] = "%" + keys[0] + "%"
-		// conn.Debug().Where("subject like ?", keys[0]).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
-		dbutils.ReadDB(DBName).Table("articles").Debug().Where("subject like ?", keys[0]).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
+		dbutils.ReadDB(DBName).Table("articles").Debug().Where(
+			"subject like ?", keys[0],
+		).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
 	}
 
 	return

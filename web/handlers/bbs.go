@@ -5,14 +5,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// QueryAritcle godoc
-// @Summary Query article
+// QueryBBS godoc
+// @Summary for QQ robot query article
 // @Description Query article
 // @Tags article
 // @Accept  json
 // @Produce  json
-// @Param req body vo.QueryArticleReq true "Record"
-// @Success 200 {object} vo.QueryArticleResp
+// @Param req body vo.QueryBBSReq true "Message"
+// @Success 200 {object} vo.QueryBBSResp
 // @Router /article/list [get]
 func QueryBBS(c *gin.Context) {
 	var req vo.QueryBBSReq
@@ -36,7 +36,7 @@ func QueryBBS(c *gin.Context) {
 			msg += "您的查询的信息，暂时无结果，可能是后台同步论坛数据失败。\n"
 		} else {
 			for _, article := range articles {
-				msg += article.Subject +"\n" + article.DataFrom  + "\n"
+				msg += article.Subject + "\n" + article.DataFrom + "\n"
 			}
 		}
 	}
