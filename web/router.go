@@ -24,7 +24,7 @@ func NewRouter() *gin.Engine {
 
 	v0API := router.Group("/apis/bbs/v0")
 	swaggerHandlers.RegisterSwagger(v0API)
-	RobotAPI := v0API.Group("/bbs")
+	RobotAPI := v0API.Group("/robot")
 	RobotAPI.GET("query", handlers.QueryBBS)
 
 	v1API := router.Group("/apis/bbs/v1")

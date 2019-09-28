@@ -13,7 +13,7 @@ import (
 // @Produce  json
 // @Param req body vo.QueryBBSReq true "Message"
 // @Success 200 {object} vo.QueryBBSResp
-// @Router /article/list [get]
+// @Router /robot/query [get]
 func QueryBBS(c *gin.Context) {
 	var req vo.QueryBBSReq
 	if err := c.ShouldBindQuery(&req); err != nil {
