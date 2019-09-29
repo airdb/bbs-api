@@ -4,6 +4,7 @@ import (
 	"fmt"
 	_ "github.com/airdb/bbs-api/docs"
 	"github.com/airdb/bbs-api/web/handlers"
+	"github.com/airdb/sailor/config"
 	swaggerHandlers "github.com/airdb/sailor/gin/handlers"
 	"github.com/airdb/sailor/gin/middlewares"
 	"github.com/gin-gonic/gin"
@@ -39,7 +40,9 @@ func NewRouter() *gin.Engine {
 }
 
 func Run() {
-	err := NewRouter().Run(":8080")
+	config.Init()
+	fmt.Printf("Env: %s, Port: %s\n", config.GetEnv(), config.GetPort())
+	err := NewRouter().Run("0.0.0.0:"+config.GetPort())
 	if err != nil {
 		fmt.Println("error: ", err)
 	}
