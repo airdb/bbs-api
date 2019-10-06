@@ -3,7 +3,7 @@ module github.com/airdb/bbs-api
 go 1.13
 
 require (
-	github.com/airdb/sailor v0.0.0-20190929144534-a8add4bb3d29
+	github.com/airdb/sailor v0.0.0-20191006102003-16cd6da0311c
 	github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc
 	github.com/gin-gonic/gin v1.4.0
 	github.com/jinzhu/gorm v1.9.11
