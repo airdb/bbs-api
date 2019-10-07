@@ -1,13 +1,13 @@
 package po
 
 import (
+	"github.com/airdb/sailor/config"
 	"github.com/airdb/sailor/dbutils"
+	"github.com/airdb/sailor/enum"
 	"github.com/jinzhu/gorm"
 	"strings"
 	"time"
 )
-
-var DBName = "dev_mina"
 
 type Article struct {
 	gorm.Model
@@ -38,29 +38,42 @@ type Article struct {
 	SyncStatus     int `gorm:"column:syncstatus;default:0"`
 }
 
+func getDefaultDBName() (dbName string) {
+	config.Init()
+	env := config.GetEnv()
+
+	if enum.IsLiveEnv(env) {
+		dbName = "mina"
+	} else {
+		dbName = config.GetEnv() + "_mina"
+	}
+
+	return dbName
+}
+
 func QueryBBSByKeywords(keyword string) (articles []*Article) {
+	dbName := getDefaultDBName()
 	keys := strings.Split(keyword, " ")
 
 	if len(keys) == 3 {
 		keys[0] = "%" + keys[0] + "%"
 		keys[1] = "%" + keys[1] + "%"
 		keys[2] = "%" + keys[2] + "%"
-		dbutils.ReadDB(DBName).Table("articles").Where(
+		dbutils.ReadDB(dbName).Table("articles").Where(
 			"subject like ? and subject like ? and subject like ? ", keys[0], keys[1], keys[2],
 		).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
 	} else if len(keys) == 2 {
 		keys[0] = "%" + keys[0] + "%"
 		keys[1] = "%" + keys[1] + "%"
-		dbutils.ReadDB(DBName).Table("articles").Where(
+		dbutils.ReadDB(dbName).Table("articles").Where(
 			"subject like ? and subject like ? ", keys[0], keys[1],
 		).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
 	} else {
 		keys[0] = "%" + keys[0] + "%"
-		dbutils.ReadDB(DBName).Table("articles").Debug().Where(
+		dbutils.ReadDB(dbName).Table("articles").Debug().Where(
 			"subject like ?", keys[0],
 		).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
 	}
 
 	return
-
 }
