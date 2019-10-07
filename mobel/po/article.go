@@ -40,13 +40,11 @@ type Article struct {
 }
 
 func getDefaultDBName() (dbName string) {
-	config.Init()
 	env := strings.ToUpper(config.GetEnv())
 
-	if enum.IsLiveEnv(env) {
-		dbName = "mina"
-	} else {
-		dbName = config.GetEnv() + "_mina"
+	dbName = "mina"
+	if !enum.IsLiveEnv(env) {
+		dbName = config.GetEnv() + "_" + dbName
 	}
 
 	return dbName
