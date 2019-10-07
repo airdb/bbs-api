@@ -8,7 +8,7 @@ import (
 func main() {
 	for {
 		fmt.Println("vim-go")
-		time.Sleep(2 * time.Second)
+		time.Sleep(300 * time.Second)
 	}
 }
 
