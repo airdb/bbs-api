@@ -1,6 +1,7 @@
 package po
 
 import (
+	"fmt"
 	"github.com/airdb/sailor/config"
 	"github.com/airdb/sailor/dbutils"
 	"github.com/airdb/sailor/enum"
@@ -53,6 +54,7 @@ func getDefaultDBName() (dbName string) {
 
 func QueryBBSByKeywords(keyword string) (articles []*Article) {
 	dbName := getDefaultDBName()
+	fmt.Println("db_name", dbName)
 	keys := strings.Split(keyword, " ")
 
 	if len(keys) == 3 {
