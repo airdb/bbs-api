@@ -9,7 +9,6 @@ func main() {
 	for {
 		fmt.Println("vim-go")
 		time.Sleep(2 * time.Second)
-
 	}
 }
 
