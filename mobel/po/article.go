@@ -77,3 +77,7 @@ func QueryBBSByKeywords(keyword string) (articles []*Article) {
 
 	return
 }
+
+func QueryOrCreateArticle(article Article) {
+
+}

@@ -232,6 +232,7 @@ func syncFrombbs() {
 			fmt.Println("update datafrom only, this babyid is null.", article.DataFrom)
 			article.SyncStatus = -1
 			// models.AddArticleDataFrom(article)
+			// po.QueryOrCreateArticle(article)
 			continue
 		}
 
