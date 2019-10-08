@@ -15,7 +15,9 @@ ADD . ${BUILDDIR}
 
 RUN go get -u github.com/swaggo/swag/cmd/swag && \
 	GO111MODULE=off swag init -g web/router.go && \
-	go build -o main main.go
+	go build -o main main.go && \
+	go build -o bbs-sync cmd/bbs_sync.go
+
 
 # Stage 2: Release the binary from the builder stage
 FROM ubuntu
