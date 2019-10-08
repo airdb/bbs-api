@@ -79,7 +79,7 @@ func QueryBBSByKeywords(keyword string) (articles []*Article) {
 }
 
 func FirstOrCreateArticleDataFrom(article Article) (flag bool) {
-	db := dbutils.WriteDB(getDefaultDBName()).FirstOrCreate(&article, Article{DataFrom: article.DataFrom})
+	db := dbutils.WriteDB(getDefaultDBName()).Debug().FirstOrCreate(&article, Article{DataFrom: article.DataFrom})
 	if db.Error == nil {
 		flag = true
 	}
@@ -87,5 +87,5 @@ func FirstOrCreateArticleDataFrom(article Article) (flag bool) {
 }
 
 func UpdateArticle(article Article) {
-	dbutils.WriteDB(getDefaultDBName()).Save(&article)
+	dbutils.WriteDB(getDefaultDBName()).Debug().Save(&article)
 }
