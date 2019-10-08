@@ -1,22 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"github.com/airdb/bbs-api/mobel/vo"
+	"regexp"
+	"strings"
 	"time"
+	"fmt"
 )
 
-func main() {
-	// for _, article := range vo.GetBBSArticles() {
-	// 	fmt.Println(article)
-	// }
-	for {
-		fmt.Println("vim-go")
-		time.Sleep(300 * time.Second)
-	}
-}
-
-/*
 // 去掉html中所有标签
 func trimHtml(src string) string {
 
@@ -71,6 +62,7 @@ func formatTime(tstr string) (tm time.Time, err error) {
 	return
 }
 
+/*
 func parseHtml(datafrom, title, msg string) (article models.Article) {
 	article.DataFrom = datafrom
 	article.Title = title
@@ -127,7 +119,7 @@ func parseHtml(datafrom, title, msg string) (article models.Article) {
 		} else {
 			value = info
 		}
-		beego.Error(key, detailFlag, value)
+		fmt.Println(key, detailFlag, value)
 
 		// tmexp := regexp.MustCompile(`[（|(].*[）|)]|农历|阳历|不准确|大概|日期不确定|不确定|约|X日|份左右|期不详。|。|具体.+?|失踪|宋振彪|宋振邦2008年|.*身份证日期|左右|号|阴历|某天|夏.*|年底|腊月.*|九.*|八.*|天已记不清楚|冬月.*|正.*|初.*|下午1点半|大|生`)
 		tmexp := regexp.MustCompile(`[（|(].*[）|)]|农历|公历|古历|阳历|旧历|不准确|大概|日期不确定|不确定|约|X日|份左右|期不
@@ -163,7 +155,7 @@ func parseHtml(datafrom, title, msg string) (article models.Article) {
 			value = strings.Replace(value, "—", "", -1)
 			article.BirthedAt, err = formatTime(value)
 			if err != nil {
-				beego.Error("出生日期", value, err)
+				fmt.Println("出生日期", value, err)
 			}
 			// beego.Info(key, value, ", 格式化:", article.BirthedAt)
 		case "失踪日期", "失踪时间":
@@ -172,7 +164,7 @@ func parseHtml(datafrom, title, msg string) (article models.Article) {
 			article.MissedAt, err = formatTime(value)
 			// tm = tm.Format("2006-01-02 15:04:05")
 			if err != nil {
-				beego.Error("失踪日期", value, err)
+				fmt.Println("失踪日期", value, err)
 			}
 			// beego.Info(key, value, ", 格式化:", article.MissedAt)
 		case "注册时间", "站务电话":
@@ -186,7 +178,7 @@ func parseHtml(datafrom, title, msg string) (article models.Article) {
 			// beego.Error("this is default", key)
 		}
 	}
-	beego.Info("Babyid:", article.Babyid, ", 数据来源:", article.DataFrom )
+	fmt.Println("Babyid:", article.Babyid, ", 数据来源:", article.DataFrom)
 	return
 }
 
@@ -225,3 +217,21 @@ func syncFrombbs() {
 	}
 }
 */
+
+func syncFrombbs() {
+	for _, preForumPost := range vo.GetBBSArticles() {
+		// datafrom := "https://bbs.baobeihuijia.com/thread-"
+		// datafrom += strconv.FormatInt(int64(preForumPost.Tid), 10) + "-1-1.html"
+		datafrom := fmt.Sprintf("https://bbs.baobeihuijia.com/thread-%d-1-1.html", preForumPost.Tid)
+		fmt.Println(datafrom)
+
+	}
+}
+
+func main() {
+	for {
+		fmt.Println("vim-go")
+		syncFrombbs()
+		time.Sleep(30 * time.Second)
+	}
+}
