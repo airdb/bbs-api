@@ -77,4 +77,3 @@ func QueryBBS(c *gin.Context) {
 	msg += "(出处: 宝贝回家论坛)\n"
 	c.String(200, msg)
 }
-

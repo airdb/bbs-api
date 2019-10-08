@@ -42,7 +42,7 @@ func NewRouter() *gin.Engine {
 func Run() {
 	config.Init()
 	fmt.Printf("Env: %s, Port: %s\n", config.GetEnv(), config.GetPort())
-	err := NewRouter().Run("0.0.0.0:"+config.GetPort())
+	err := NewRouter().Run("0.0.0.0:" + config.GetPort())
 	if err != nil {
 		fmt.Println("error: ", err)
 	}
