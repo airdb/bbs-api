@@ -1,7 +1,9 @@
 package po
 
 import (
+	"fmt"
 	"github.com/airdb/sailor/config"
+	"github.com/airdb/sailor/dbutils"
 	"github.com/airdb/sailor/enum"
 	"strings"
 )
@@ -25,4 +27,21 @@ func getBBSDBName() (dbName string) {
 	}
 
 	return dbName
+}
+
+func GetBBSArticles() (preForumPost []PreForumPost) {
+	dbName := getBBSDBName()
+	fmt.Println("xxxx", dbName)
+
+	sqltext := ""
+	sqltext = "select * from pre_forum_post where  subject != '' "
+	// sqltext += " and message like '%登记信息%宝贝回家编号%' "
+	// sqltext += " and message like '%登记信息%编号%' "
+	sqltext += " and message like '%本网站及志愿者提供的寻人服务均是免费%' "
+	//sqltext += " and subject like '%3313%' "
+	// sqltext += " and tid = 193856 "
+	sqltext += " order by pid desc"
+	sqltext += " limit 10 offset 0"
+	dbutils.ReadDB(dbName).Raw(sqltext).Scan(&preForumPost)
+	return
 }

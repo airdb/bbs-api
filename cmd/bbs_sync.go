@@ -2,10 +2,14 @@ package main
 
 import (
 	"fmt"
+	"github.com/airdb/bbs-api/mobel/vo"
 	"time"
 )
 
 func main() {
+	// for _, article := range vo.GetBBSArticles() {
+	// 	fmt.Println(article)
+	// }
 	for {
 		fmt.Println("vim-go")
 		time.Sleep(300 * time.Second)

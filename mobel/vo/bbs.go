@@ -1,5 +1,7 @@
 package vo
 
+import "github.com/airdb/bbs-api/mobel/po"
 
-func GetBBSSyncData() {
+func GetBBSArticles() (preForumPost []po.PreForumPost){
+	return po.GetBBSArticles()
 }
