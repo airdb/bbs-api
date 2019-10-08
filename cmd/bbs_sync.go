@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/airdb/bbs-api/mobel/po"
 	"github.com/airdb/bbs-api/mobel/vo"
 	"regexp"
 	"strings"
@@ -62,8 +63,7 @@ func formatTime(tstr string) (tm time.Time, err error) {
 	return
 }
 
-/*
-func parseHtml(datafrom, title, msg string) (article models.Article) {
+func parseHtml(datafrom, title, msg string) (article po.Article) {
 	article.DataFrom = datafrom
 	article.Title = title
 	article.Subject = title
@@ -182,6 +182,7 @@ func parseHtml(datafrom, title, msg string) (article models.Article) {
 	return
 }
 
+/*
 func syncFrombbs() {
 	// preForumPosts := models.GetLastBBSInfo()
 	preForumPosts := models.GetAllBBSInfo()
@@ -222,8 +223,18 @@ func syncFrombbs() {
 	for _, preForumPost := range vo.GetBBSArticles() {
 		// datafrom := "https://bbs.baobeihuijia.com/thread-"
 		// datafrom += strconv.FormatInt(int64(preForumPost.Tid), 10) + "-1-1.html"
+
 		datafrom := fmt.Sprintf("https://bbs.baobeihuijia.com/thread-%d-1-1.html", preForumPost.Tid)
-		fmt.Println(datafrom)
+		msg := trimHtml(preForumPost.Message)
+
+		article := parseHtml(datafrom, preForumPost.Subject, msg)
+		if article.Babyid == "" {
+			fmt.Println("update datafrom only, this babyid is null.", article.DataFrom)
+			article.SyncStatus = -1
+			// models.AddArticleDataFrom(article)
+			continue
+		}
+
 
 	}
 }
