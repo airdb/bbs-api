@@ -78,10 +78,10 @@ func QueryBBSByKeywords(keyword string) (articles []*Article) {
 	return
 }
 
-func FirstOrCreateArticleDataFrom(article Article) (flag bool) {
+func FirstOrCreateArticleDataFrom(article Article) (id uint) {
 	db := dbutils.WriteDB(getDefaultDBName()).Debug().FirstOrCreate(&article, Article{DataFrom: article.DataFrom})
 	if db.Error == nil {
-		flag = true
+		id = article.ID
 	}
 	return
 }

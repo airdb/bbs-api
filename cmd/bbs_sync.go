@@ -228,7 +228,7 @@ func syncFrombbs() {
 		if article.Babyid == "" {
 			fmt.Println("update datafrom only, this babyid is null.", article.DataFrom)
 			article.SyncStatus = -1
-			po.FirstOrCreateArticleDataFrom(article)
+			article.ID = po.FirstOrCreateArticleDataFrom(article)
 			po.UpdateArticle(article)
 		}
 	}
