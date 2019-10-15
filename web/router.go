@@ -33,8 +33,8 @@ func NewRouter() *gin.Engine {
 	// Area APIs.
 	AreaAPI := v1API.Group("/area")
 	AreaAPI.GET("list", handlers.ListArea)
-	AreaAPI.GET("list", handlers.QueryArea)
-	AreaAPI.GET("list", handlers.UpdateArea)
+	AreaAPI.GET("query", handlers.QueryArea)
+	AreaAPI.GET("update", handlers.UpdateArea)
 
 	// Artciles APIs.
 	ArticleAPI := v1API.Group("/article")
