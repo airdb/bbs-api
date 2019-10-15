@@ -13,10 +13,10 @@ import (
 func trimHtml(src string) string {
 
 	//将HTML标签全转换成小写
-	re, _ := regexp.Compile("\\<[\\S\\s]+?\\>")
+	re, _ := regexp.Compile(`\<[\S\s]+?\>`)
 	src = re.ReplaceAllStringFunc(src, strings.ToLower)
 
-	re, _ = regexp.Compile("\\[align=left\\]")
+	re, _ = regexp.Compile(`\[align=left\]`)
 	// src = re.ReplaceAllString(src, "\n\\[align=left\\]")
 	src = re.ReplaceAllString(src, "\n")
 
@@ -26,7 +26,7 @@ func trimHtml(src string) string {
 	src = re.ReplaceAllString(src, "")
 
 	//去除SCRIPT
-	re, _ = regexp.Compile("\\<script[\\S\\s]+?\\</script\\>")
+	re, _ = regexp.Compile(`\<script[\S\s]+?\</script\>`)
 	src = re.ReplaceAllString(src, "")
 
 	// [attach]
@@ -35,11 +35,11 @@ func trimHtml(src string) string {
 	src = strings.Replace(src, "· ", "\r", -1)
 
 	// 去掉[]标签, 如 [color=#000000]
-	re, _ = regexp.Compile("\\[[\\S\\s]+?\\]")
+	re, _ = regexp.Compile(`\[[\S\s]+?\]`)
 	src = re.ReplaceAllString(src, "")
 
 	//去除所有尖括号内的HTML代码，并换成换行符
-	re, _ = regexp.Compile("\\<[\\S\\s]+?\\>")
+	re, _ = regexp.Compile(`\<[\S\s]+?\>`)
 	// src = re.ReplaceAllString(src, "\n")
 	src = re.ReplaceAllString(src, "")
 
