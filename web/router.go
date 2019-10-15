@@ -30,7 +30,13 @@ func NewRouter() *gin.Engine {
 
 	v1API := router.Group("/apis/bbs/v1")
 	swaggerHandlers.RegisterSwagger(v1API)
-	// // Artciles APIs.
+	// Area APIs.
+	AreaAPI := v1API.Group("/area")
+	AreaAPI.GET("list", handlers.ListArea)
+	AreaAPI.GET("list", handlers.QueryArea)
+	AreaAPI.GET("list", handlers.UpdateArea)
+
+	// Artciles APIs.
 	ArticleAPI := v1API.Group("/article")
 	ArticleAPI.GET("list", handlers.ListArticle)
 	ArticleAPI.GET("query", handlers.QueryArticle)

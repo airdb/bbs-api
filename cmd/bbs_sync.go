@@ -21,7 +21,8 @@ func trimHtml(src string) string {
 	src = re.ReplaceAllString(src, "\n")
 
 	// //去除STYLE
-	re, _ = regexp.Compile("\\<style[\\S\\s]+?\\</style\\>")
+	// re, _ = regexp.Compile("\\<style[\\S\\s]+?\\</style\\>")
+	re, _ = regexp.Compile(`\<style[\S\s]+?\\</style\>`)
 	src = re.ReplaceAllString(src, "")
 
 	//去除SCRIPT
@@ -170,7 +171,6 @@ func parseHtml(datafrom, title, msg string) (article po.Article) {
 		case "注册时间", "站务电话":
 			end = true
 			detailFlag = false
-			break
 		case "其他资料", "其他情况", "共同经历资料":
 			detailFlag = true
 			article.Details += value
