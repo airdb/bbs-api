@@ -120,7 +120,7 @@ func parseHtml(datafrom, title, msg string) (article po.Article) {
 		} else {
 			value = info
 		}
-		fmt.Println(key, detailFlag, value)
+		// fmt.Println(key, detailFlag, value)
 
 		// tmexp := regexp.MustCompile(`[（|(].*[）|)]|农历|阳历|不准确|大概|日期不确定|不确定|约|X日|份左右|期不详。|。|具体.+?|失踪|宋振彪|宋振邦2008年|.*身份证日期|左右|号|阴历|某天|夏.*|年底|腊月.*|九.*|八.*|天已记不清楚|冬月.*|正.*|初.*|下午1点半|大|生`)
 		tmexp := regexp.MustCompile(`[（|(].*[）|)]|农历|公历|古历|阳历|旧历|不准确|大概|日期不确定|不确定|约|X日|份左右|期不
@@ -181,43 +181,6 @@ func parseHtml(datafrom, title, msg string) (article po.Article) {
 	fmt.Println("Babyid:", article.Babyid, ", 数据来源:", article.DataFrom)
 	return
 }
-
-/*
-func syncFrombbs() {
-	// preForumPosts := models.GetLastBBSInfo()
-	preForumPosts := models.GetAllBBSInfo()
-
-	for i, preForumPost := range preForumPosts {
-		datafrom := "https://bbs.baobeihuijia.com/thread-"
-		datafrom += strconv.FormatInt(int64(preForumPost.Tid), 10) + "-1-1.html"
-		beego.Info(i, datafrom, preForumPost.Subject)
-		var art models.Article
-		art.Subject = preForumPost.Subject
-		art.DataFrom = datafrom
-
-		models.AddArticleDataFrom(art)
-		continue
-		// beego.Info("====", datafrom)
-
-		// beego.Error(preForumPost.Tid, preForumPost.Pid)
-		msg := trimHtml(preForumPost.Message)
-		article := parseHtml(datafrom, preForumPost.Subject, msg)
-		if article.Babyid == "" {
-			beego.Critical("update datafrom only, this babyid is null.", article.DataFrom)
-			article.SyncStatus = -1
-			models.AddArticleDataFrom(article)
-			continue
-		}
-
-		article.UUID = uuid.New().String()
-		models.AddArticle(article)
-		models.SyncPictureFromBbs(preForumPost.Tid, preForumPost.Pid, article.Babyid, article.UUID)
-		if beego.BConfig.RunMode == "prod" {
-		}
-		return
-	}
-}
-*/
 
 func syncFrombbs() {
 	for _, preForumPost := range vo.GetBBSArticles() {
