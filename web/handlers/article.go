@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/airdb/bbs-api/mobel/vo"
+	"github.com/airdb/bbs-api/model/vo"
 	"github.com/airdb/sailor/gin/middlewares"
 	"github.com/gin-gonic/gin"
 )

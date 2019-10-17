@@ -10,6 +10,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func Run() {
+	config.Init()
+	fmt.Printf("Env: %s, Port: %s\n", config.GetEnv(), config.GetPort())
+	err := NewRouter().Run("0.0.0.0:" + config.GetPort())
+	if err != nil {
+		fmt.Println("error: ", err)
+	}
+}
+
 // @title BBS API
 // @description This is the API server of BBS.
 // @BasePath /apis/bbs/v1
@@ -30,29 +39,135 @@ func NewRouter() *gin.Engine {
 
 	v1API := router.Group("/apis/bbs/v1")
 	swaggerHandlers.RegisterSwagger(v1API)
+
 	// Area APIs.
-	AreaAPI := v1API.Group("/area")
-	AreaAPI.GET("list", handlers.ListArea)
-	AreaAPI.GET("query", handlers.QueryArea)
-	AreaAPI.GET("update", handlers.UpdateArea)
+	area(v1API)
 
 	// Artciles APIs.
-	ArticleAPI := v1API.Group("/article")
-	ArticleAPI.GET("list", handlers.ListArticle)
-	ArticleAPI.GET("query", handlers.QueryArticle)
-	ArticleAPI.GET("create", handlers.QueryArticle)
+	article(v1API)
 
 	// Carousels APIs.
-	CarouselAPI := v1API.Group("/carousel")
-	CarouselAPI.GET("query", handlers.QueryCarousel)
+	carousel(v1API)
+	charts(v1API)
+	column(v1API)
+	count(v1API)
+	dataPerms(v1API)
+	draft(v1API)
+	file(v1API)
+	folder(v1API)
+	log(v1API)
+	menu(v1API)
+	notice(v1API)
+	question(v1API)
+	role(v1API)
+	role_relation(v1API)
+	square(v1API)
+	tag(v1API)
+	tagRelation(v1API)
+	topic(v1API)
+	user(v1API)
+
 	return router
 }
 
-func Run() {
-	config.Init()
-	fmt.Printf("Env: %s, Port: %s\n", config.GetEnv(), config.GetPort())
-	err := NewRouter().Run("0.0.0.0:" + config.GetPort())
-	if err != nil {
-		fmt.Println("error: ", err)
-	}
+func area(api *gin.RouterGroup) {
+	r := api.Group("/area")
+	r.GET("list", handlers.ListArea)
+	r.GET("query", handlers.QueryArea)
+	r.GET("update", handlers.UpdateArea)
+
+}
+
+func article(api *gin.RouterGroup) {
+	r := api.Group("/article")
+	r.GET("list", handlers.ListArticle)
+	r.GET("query", handlers.QueryArticle)
+	r.GET("create", handlers.QueryArticle)
+}
+
+func carousel(api *gin.RouterGroup) {
+	r := api.Group("/carousel")
+	r.GET("query", handlers.QueryCarousel)
+}
+
+func charts(api *gin.RouterGroup) {
+	r := api.Group("/charts")
+	r.GET("query", handlers.QueryCharts)
+}
+
+func column(api *gin.RouterGroup) {
+	r := api.Group("/column")
+	r.GET("query", handlers.QueryColumn)
+}
+
+func count(api *gin.RouterGroup) {
+	r := api.Group("/count")
+	r.GET("query", handlers.QueryCount)
+}
+
+func dataPerms(api *gin.RouterGroup) {
+	r := api.Group("/data_perms")
+	r.GET("query", handlers.QueryDataPerms)
+}
+
+func draft(api *gin.RouterGroup) {
+	r := api.Group("/draft")
+	r.GET("query", handlers.QueryDraft)
+}
+func file(api *gin.RouterGroup) {
+	r := api.Group("/file")
+	r.GET("query", handlers.QueryFile)
+}
+func folder(api *gin.RouterGroup) {
+	r := api.Group("/folder")
+	r.GET("query", handlers.QueryFolder)
+}
+
+func log(api *gin.RouterGroup) {
+	r := api.Group("/log")
+	r.GET("query", handlers.QueryLog)
+}
+
+func menu(api *gin.RouterGroup) {
+	r := api.Group("/menu")
+	r.GET("query", handlers.QueryMenu)
+}
+func notice(api *gin.RouterGroup) {
+	r := api.Group("/notice")
+	r.GET("query", handlers.QueryNotice)
+}
+func question(api *gin.RouterGroup) {
+	r := api.Group("/question")
+	r.GET("query", handlers.QueryQuestion)
+}
+func role(api *gin.RouterGroup) {
+	r := api.Group("/role")
+	r.GET("query", handlers.QueryRole)
+}
+func role_relation(api *gin.RouterGroup) {
+	r := api.Group("/role_relation")
+	r.GET("query", handlers.QueryRoleRelation)
+}
+func square(api *gin.RouterGroup) {
+	r := api.Group("/square")
+	r.GET("query", handlers.QuerySquare)
+}
+func tag(api *gin.RouterGroup) {
+	r := api.Group("/tag")
+	r.GET("query", handlers.QueryTag)
+}
+
+func tagRelation(api *gin.RouterGroup) {
+	r := api.Group("/tag_relation")
+	r.GET("query", handlers.QueryTagRelation)
+}
+
+func topic(api *gin.RouterGroup) {
+	r := api.Group("/topic")
+	r.GET("query", handlers.QueryTopic)
+}
+
+func user(api *gin.RouterGroup) {
+	r := api.Group("/user")
+	r.GET("query", handlers.QueryUser)
 }

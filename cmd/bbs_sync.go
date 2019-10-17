@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/airdb/bbs-api/mobel/po"
-	"github.com/airdb/bbs-api/mobel/vo"
+	"github.com/airdb/bbs-api/model/po"
+	"github.com/airdb/bbs-api/model/vo"
 	"regexp"
 	"strings"
 	"time"

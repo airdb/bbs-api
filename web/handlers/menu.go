@@ -5,15 +5,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// QueryCarousel godoc
-// @Summary Query area
-// @Description Query area
-// @Tags area
+// QueryMenu godoc
+// @Summary Query menu
+// @Description Query menu
+// @Tags menu
 // @Accept  json
 // @Produce  json
 // @Param req body vo.ListArticleReq true "Record"
 // @Success 200 {object} vo.ListArticleResp
-// @Router /area/getAll/:pid [get]
+// @Router /menu/getAll/:pid [get]
 func QueryMenu(c *gin.Context) {
 	middlewares.SetResp(
 		c,
