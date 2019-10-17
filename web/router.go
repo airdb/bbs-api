@@ -42,6 +42,9 @@ func NewRouter() *gin.Engine {
 	ArticleAPI.GET("query", handlers.QueryArticle)
 	ArticleAPI.GET("create", handlers.QueryArticle)
 
+	// Carousels APIs.
+	CarouselAPI := v1API.Group("/carousel")
+	CarouselAPI.GET("query", handlers.QueryCarousel)
 	return router
 }
 
