@@ -6,6 +6,7 @@ import (
 	"github.com/airdb/bbs-api/model/vo"
 	"regexp"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -182,7 +183,9 @@ func parseHtml(datafrom, title, msg string) (article po.Article) {
 	return
 }
 
-func syncFrombbs() {
+func syncFrombbs(wg *sync.WaitGroup) {
+	defer wg.Done()
+
 	for _, preForumPost := range vo.GetBBSArticles() {
 		datafrom := fmt.Sprintf("https://bbs.baobeihuijia.com/thread-%d-1-1.html", preForumPost.Tid)
 		msg := trimHtml(preForumPost.Message)
@@ -198,9 +201,13 @@ func syncFrombbs() {
 }
 
 func main() {
+	wg := sync.WaitGroup{}
+
 	for {
-		fmt.Println("vim-go")
-		syncFrombbs()
-		time.Sleep(30 * time.Second)
+		wg.Add(1)
+		// go bo.SyncAWSRoute53(&wg)
+		syncFrombbs(&wg)
+		wg.Wait()
+		<-time.After(300 * time.Second)
 	}
 }
