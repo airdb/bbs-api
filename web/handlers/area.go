@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"github.com/airdb/sailor/enum"
 	"github.com/airdb/sailor/gin/middlewares"
 	"github.com/gin-gonic/gin"
 )
@@ -17,6 +18,7 @@ import (
 func ListArea(c *gin.Context) {
 	middlewares.SetResp(
 		c,
+		enum.AirdbSuccess,
 		"list article",
 	)
 }
@@ -33,6 +35,7 @@ func ListArea(c *gin.Context) {
 func QueryArea(c *gin.Context) {
 	middlewares.SetResp(
 		c,
+		enum.AirdbSuccess,
 		"list article",
 	)
 }
@@ -49,6 +52,7 @@ func QueryArea(c *gin.Context) {
 func UpdateArea(c *gin.Context) {
 	middlewares.SetResp(
 		c,
+		enum.AirdbSuccess,
 		"list article",
 	)
 }

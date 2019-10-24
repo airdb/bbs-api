@@ -27,7 +27,7 @@ func NewRouter() *gin.Engine {
 
 	router := gin.New()
 	router.Use(
-		middlewares.Jsonifier(""),
+		middlewares.Jsonifier(),
 	)
 
 	// router.NoRoute(middlewares.Default404)

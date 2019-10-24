@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"github.com/airdb/sailor/enum"
 	"github.com/airdb/sailor/gin/middlewares"
 	"github.com/gin-gonic/gin"
 )
@@ -17,6 +18,7 @@ import (
 func QueryUser(c *gin.Context) {
 	middlewares.SetResp(
 		c,
+		enum.AirdbSuccess,
 		"list article",
 	)
 }

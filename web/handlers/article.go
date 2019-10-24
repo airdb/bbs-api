@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"github.com/airdb/bbs-api/model/vo"
+	"github.com/airdb/sailor/enum"
 	"github.com/airdb/sailor/gin/middlewares"
 	"github.com/gin-gonic/gin"
 )
@@ -18,6 +19,7 @@ import (
 func ListArticle(c *gin.Context) {
 	middlewares.SetResp(
 		c,
+		enum.AirdbSuccess,
 		"list article",
 	)
 }
@@ -34,6 +36,7 @@ func ListArticle(c *gin.Context) {
 func QueryArticle(c *gin.Context) {
 	middlewares.SetResp(
 		c,
+		enum.AirdbSuccess,
 		"query article",
 	)
 }
