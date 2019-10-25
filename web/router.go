@@ -151,6 +151,7 @@ func role_relation(api *gin.RouterGroup) {
 func square(api *gin.RouterGroup) {
 	r := api.Group("/square")
 	r.GET("query", handlers.QuerySquare)
+	r.GET("list", handlers.ListSquare)
 }
 func tag(api *gin.RouterGroup) {
 	r := api.Group("/tag")

@@ -2,11 +2,35 @@ package handlers
 
 import (
 	"fmt"
+
 	"github.com/airdb/bbs-api/model/vo"
 	"github.com/airdb/sailor/enum"
 	"github.com/airdb/sailor/gin/middlewares"
 	"github.com/gin-gonic/gin"
 )
+
+// ListSquare godoc
+// @Summary List square
+// @Description List square
+// @Tags square
+// @Accept  json
+// @Produce  json
+// @Param req body vo.ListArticleReq true "Record"
+// @Success 200 {object} vo.ListArticleResp
+// @Router /square/list [get]
+func ListSquare(c *gin.Context) {
+	fmt.Print(enum.AirdbSuccess)
+	middlewares.SetResp(
+		c,
+		enum.AirdbSuccess,
+		vo.ListSquareResp{
+			ID:    3,
+			Name:  "前端",
+			Title: "前端开发",
+			Image: "https://www.lyh.red/file/首页轮播_20190418155210_g6fk/20190418160520_8hee.png",
+		},
+	)
+}
 
 // QuerySquare godoc
 // @Summary Query square
