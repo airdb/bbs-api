@@ -1,9 +1,16 @@
 package po
 
+import (
+	"github.com/airdb/sailor/dbutils"
+	"github.com/jinzhu/gorm"
+)
+
 type Square struct {
+	gorm.Model
+	Name string `json:"name"`
 }
 
-func ListSquare() []*Square {
-	var square []*Square
-	return square
+func ListSquare() (squares []*Square) {
+	dbutils.DefaultDB().Table("square_tab").Debug().Find(&squares)
+	return
 }

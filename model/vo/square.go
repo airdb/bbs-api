@@ -1,6 +1,10 @@
 package vo
 
-import "github.com/airdb/bbs-api/model/po"
+import (
+	"fmt"
+
+	"github.com/airdb/bbs-api/model/po"
+)
 
 type Square struct {
 	ID         uint   `json:"id"`
@@ -21,15 +25,28 @@ type ListSquareResp struct {
 	Square []Square
 }
 
-func FromPoSquare() {
-
+func FromPoSquare(square *po.Square) *Square {
+	return &Square{
+		ID:         square.ID,
+		Name:       square.Name,
+	}
 }
 
-func ToPoSquare() {
+func FromPoSquares(pSquares []*po.Square) (vSquares []*Square) {
+	for _, square := range pSquares {
+		vSquares = append(vSquares, FromPoSquare(square))
+	}
 
+	return
 }
 
 func ListSquare() []*Square {
+	aa := FromPoSquares(po.ListSquare())
+	for _, a := range aa {
+		fmt.Println("xxxx", a.Name)
+	}
+	return  aa
+	/*
 	po.ListSquare()
 	var square []*Square
 
@@ -48,4 +65,6 @@ func ListSquare() []*Square {
 	square = append(square, &s)
 
 	return square
+
+	 */
 }
