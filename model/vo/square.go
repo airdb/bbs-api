@@ -12,5 +12,5 @@ type ListSquareResp struct {
 	Title      string `json:"Title"`
 	Name       string `json:"name"`
 	Image      string `json:"image"`
-	Flag       bool   `json:"flag"`
+	Flag       uint   `json:"flag"`
 }
