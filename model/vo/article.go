@@ -9,7 +9,7 @@ type ListArticleReq struct {
 
 type ListArticleResp struct {
 	// Article []*string `json:"Article"`
-	Result   []*Article
+	Result   []*Article `json:"result"`
 	CurPage  uint `json:"curPage"`
 	PageSize uint `json:"pageSize"`
 	Totals   uint `json:"totals"`
@@ -19,7 +19,7 @@ type Article struct {
 	ID      uint   `json:"id"`
 	Title   string `json:"title"`
 	Content string `json:"content"`
-	Flag uint `json:"flag"`
+	Flag    uint   `json:"flag"`
 }
 
 type QueryArticleReq struct {
@@ -46,7 +46,7 @@ func FromPoArticle(pArticle *po.Article) *Article {
 	return &Article{
 		ID:      pArticle.ID,
 		Content: pArticle.Content,
-		Flag: pArticle.Flag,
+		Flag:    pArticle.Flag,
 	}
 
 }
