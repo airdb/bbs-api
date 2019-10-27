@@ -74,7 +74,6 @@ func parseHtml(datafrom, title, msg string) (article po.MinaArticle) {
 
 	infoList := strings.Split(msg, "\r")
 	if len(infoList) <= 1 {
-		// beego.Error("=======fail", datafrom, "==========")
 		infoList = strings.Split(msg, "\n")
 	}
 

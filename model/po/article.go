@@ -43,6 +43,7 @@ type Article struct {
 	gorm.Model
 	Name    string `json:"name"`
 	Title   string `json:"title"`
+	Flag uint `json:"flag"`
 	Content string `json:"content"`
 }
 

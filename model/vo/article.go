@@ -19,6 +19,7 @@ type Article struct {
 	ID      uint   `json:"id"`
 	Title   string `json:"title"`
 	Content string `json:"content"`
+	Flag uint `json:"flag"`
 }
 
 type QueryArticleReq struct {
@@ -45,6 +46,7 @@ func FromPoArticle(pArticle *po.Article) *Article {
 	return &Article{
 		ID:      pArticle.ID,
 		Content: pArticle.Content,
+		Flag: pArticle.Flag,
 	}
 
 }
