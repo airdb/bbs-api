@@ -2,6 +2,7 @@ package vo
 
 import (
 	"github.com/airdb/bbs-api/model/po"
+	"time"
 )
 
 type ListArticleReq struct {
@@ -20,6 +21,8 @@ type Article struct {
 	Title   string `json:"title"`
 	Content string `json:"content"`
 	Flag    uint   `json:"flag"`
+	CreatedBy uint `json:"created_by"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type QueryArticleReq struct {
@@ -48,6 +51,8 @@ func FromPoArticle(pArticle *po.Article) *Article {
 		Content: pArticle.Content,
 		Flag:    pArticle.Flag,
 		Title:   pArticle.Title,
+		CreatedBy:pArticle.CreatedBy,
+		CreatedAt: pArticle.CreatedAt,
 	}
 
 }

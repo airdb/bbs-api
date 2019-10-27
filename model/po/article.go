@@ -45,6 +45,7 @@ type Article struct {
 	Title   string `json:"title"`
 	Flag    uint   `json:"flag"`
 	Content string `json:"content"`
+	CreatedBy uint `json:"created_by"`
 }
 
 func getDefaultDBName() (dbName string) {
