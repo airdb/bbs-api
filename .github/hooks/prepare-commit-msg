@@ -1,3 +1,5 @@
 #!/bin/sh
 #
-echo prepare-ccommit-msg
+
+echo "Step 1:"
+gofmt -w -s $(git rev-parse --show-toplevel)

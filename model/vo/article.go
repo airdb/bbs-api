@@ -47,7 +47,7 @@ func FromPoArticle(pArticle *po.Article) *Article {
 		ID:      pArticle.ID,
 		Content: pArticle.Content,
 		Flag:    pArticle.Flag,
-		Title: pArticle.Title,
+		Title:   pArticle.Title,
 	}
 
 }
