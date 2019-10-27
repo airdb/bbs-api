@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-type Article struct {
+type MinaArticle struct {
 	gorm.Model
 	UUID            string
 	AvatarUrl       string
@@ -39,6 +39,13 @@ type Article struct {
 	SyncStatus     int `gorm:"column:syncstatus;default:0"`
 }
 
+type Article struct {
+	gorm.Model
+	Name string `json:"name"`
+	Title string `json:"title"`
+	Content string `json:"content"`
+}
+
 func getDefaultDBName() (dbName string) {
 	env := strings.ToUpper(config.GetEnv())
 
@@ -50,7 +57,7 @@ func getDefaultDBName() (dbName string) {
 	return dbName
 }
 
-func QueryBBSByKeywords(keyword string) (articles []*Article) {
+func QueryBBSByKeywords(keyword string) (articles []*MinaArticle) {
 	dbName := getDefaultDBName()
 	fmt.Println("db_name", dbName)
 	keys := strings.Split(keyword, " ")
@@ -78,14 +85,20 @@ func QueryBBSByKeywords(keyword string) (articles []*Article) {
 	return
 }
 
-func FirstOrCreateArticleDataFrom(article Article) (id uint) {
-	db := dbutils.WriteDB(getDefaultDBName()).Debug().FirstOrCreate(&article, Article{DataFrom: article.DataFrom})
+func FirstOrCreateArticleDataFrom(article MinaArticle) (id uint) {
+	db := dbutils.WriteDB(getDefaultDBName()).Debug().FirstOrCreate(&article, MinaArticle{DataFrom: article.DataFrom})
 	if db.Error == nil {
 		id = article.ID
 	}
 	return
 }
 
-func UpdateArticle(article Article) {
+func UpdateArticle(article MinaArticle) {
 	dbutils.WriteDB(getDefaultDBName()).Debug().Save(&article)
 }
+
+func ListArticle() (article []*Article) {
+	dbutils.DefaultDB().Table("article_tab").Debug().Limit(10).Find(&article)
+	return
+}
+

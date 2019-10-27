@@ -17,10 +17,11 @@ import (
 // @Success 200 {object} vo.ListArticleResp
 // @Router /article/list [get]
 func ListArticle(c *gin.Context) {
+
 	middlewares.SetResp(
 		c,
 		enum.AirdbSuccess,
-		"list article",
+		vo.ListArticle(),
 	)
 }
 

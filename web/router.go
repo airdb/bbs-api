@@ -44,7 +44,7 @@ func NewRouter() *gin.Engine {
 	area(v1API)
 
 	// Artciles APIs.
-	article(v1API)
+	homeGroup(v1API)
 
 	// Carousels APIs.
 	carousel(v1API)
@@ -61,7 +61,6 @@ func NewRouter() *gin.Engine {
 	question(v1API)
 	role(v1API)
 	role_relation(v1API)
-	square(v1API)
 	tag(v1API)
 	tagRelation(v1API)
 	topic(v1API)
@@ -78,11 +77,14 @@ func area(api *gin.RouterGroup) {
 
 }
 
-func article(api *gin.RouterGroup) {
-	r := api.Group("/article")
-	r.GET("list", handlers.ListArticle)
-	r.GET("query", handlers.QueryArticle)
-	r.GET("create", handlers.QueryArticle)
+func homeGroup(api *gin.RouterGroup) {
+	artilceAPI := api.Group("/article")
+	artilceAPI.GET("list", handlers.ListArticle)
+	artilceAPI.GET("query", handlers.QueryArticle)
+	artilceAPI.GET("create", handlers.QueryArticle)
+
+	squareAPI := api.Group("/square")
+	squareAPI.GET("list", handlers.ListSquare)
 }
 
 func carousel(api *gin.RouterGroup) {
@@ -148,10 +150,7 @@ func role_relation(api *gin.RouterGroup) {
 	r := api.Group("/role_relation")
 	r.GET("query", handlers.QueryRoleRelation)
 }
-func square(api *gin.RouterGroup) {
-	r := api.Group("/square")
-	r.GET("list", handlers.ListSquare)
-}
+
 func tag(api *gin.RouterGroup) {
 	r := api.Group("/tag")
 	r.GET("query", handlers.QueryTag)

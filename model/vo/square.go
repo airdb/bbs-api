@@ -27,8 +27,8 @@ type ListSquareResp struct {
 
 func FromPoSquare(square *po.Square) *Square {
 	return &Square{
-		ID:         square.ID,
-		Name:       square.Name,
+		ID:   square.ID,
+		Name: square.Name,
 	}
 }
 
@@ -45,26 +45,26 @@ func ListSquare() []*Square {
 	for _, a := range aa {
 		fmt.Println("xxxx", a.Name)
 	}
-	return  aa
+	return aa
 	/*
-	po.ListSquare()
-	var square []*Square
+		po.ListSquare()
+		var square []*Square
 
-	s := Square{
-		ID:         3,
-		TagTypeID:  2,
-		Sort:       1,
-		Status:     1,
-		CreateUser: 2,
-		Flag:       1,
-		Name:       "前端",
-		Title:      "前端开发",
-		Image:      "https://www.lyh.red/file/首页轮播_20190418155210_g6fk/20190418160520_8hee.png",
-	}
+		s := Square{
+			ID:         3,
+			TagTypeID:  2,
+			Sort:       1,
+			Status:     1,
+			CreateUser: 2,
+			Flag:       1,
+			Name:       "前端",
+			Title:      "前端开发",
+			Image:      "https://www.lyh.red/file/首页轮播_20190418155210_g6fk/20190418160520_8hee.png",
+		}
 
-	square = append(square, &s)
+		square = append(square, &s)
 
-	return square
+		return square
 
-	 */
+	*/
 }
