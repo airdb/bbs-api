@@ -9,15 +9,15 @@ type ListArticleReq struct {
 
 type ListArticleResp struct {
 	// Article []*string `json:"Article"`
-	Result []*Article
-	CurPage uint `json:"curPage"`
+	Result   []*Article
+	CurPage  uint `json:"curPage"`
 	PageSize uint `json:"pageSize"`
-	Totals uint `json:"totals"`
+	Totals   uint `json:"totals"`
 }
 
 type Article struct {
-	ID uint `json:"id"`
-	Title string `json:"title"`
+	ID      uint   `json:"id"`
+	Title   string `json:"title"`
 	Content string `json:"content"`
 }
 
@@ -43,7 +43,7 @@ func QueryBBSByKeyword(keyword string) []*po.MinaArticle {
 
 func FromPoArticle(pArticle *po.Article) *Article {
 	return &Article{
-		ID:       pArticle.ID,
+		ID:      pArticle.ID,
 		Content: pArticle.Content,
 	}
 
@@ -56,12 +56,12 @@ func FromPoArticles(pArticles []*po.Article) (articles []*Article) {
 	return
 }
 
-func ListArticle() (*ListArticleResp){
+func ListArticle() *ListArticleResp {
 	resp := ListArticleResp{
-		Result: FromPoArticles(po.ListArticle()),
-		CurPage: 1,
-		PageSize:10,
-		Totals: 10,
+		Result:   FromPoArticles(po.ListArticle()),
+		CurPage:  1,
+		PageSize: 10,
+		Totals:   10,
 	}
 
 	return &resp

@@ -65,7 +65,7 @@ func formatTime(tstr string) (tm time.Time, err error) {
 	return
 }
 
-func parseHtml(datafrom, title, msg string) (article po.Article) {
+func parseHtml(datafrom, title, msg string) (article po.MinaArticle) {
 	article.DataFrom = datafrom
 	article.Title = title
 	article.Subject = title

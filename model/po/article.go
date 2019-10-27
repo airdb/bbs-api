@@ -41,8 +41,8 @@ type MinaArticle struct {
 
 type Article struct {
 	gorm.Model
-	Name string `json:"name"`
-	Title string `json:"title"`
+	Name    string `json:"name"`
+	Title   string `json:"title"`
 	Content string `json:"content"`
 }
 
@@ -101,4 +101,3 @@ func ListArticle() (article []*Article) {
 	dbutils.DefaultDB().Table("article_tab").Debug().Limit(10).Find(&article)
 	return
 }
-
