@@ -1,24 +1,25 @@
 package handlers
 
 import (
+	"github.com/airdb/bbs-api/model/vo"
 	"github.com/airdb/sailor/enum"
 	"github.com/airdb/sailor/gin/middlewares"
 	"github.com/gin-gonic/gin"
 )
 
-// QueryNotice godoc
-// @Summary Query notice
-// @Description Query notice
+// ListNotice godoc
+// @Summary List notice
+// @Description List notice
 // @Tags notice
 // @Accept  json
 // @Produce  json
-// @Param req body vo.ListArticleReq true "Record"
-// @Success 200 {object} vo.ListArticleResp
-// @Router /notice/getAll/:pid [get]
-func QueryNotice(c *gin.Context) {
+// @Param req body vo.ListNoticeReq true "Record"
+// @Success 200 {object} vo.ListNoticeResp
+// @Router /notice/list [get]
+func ListNotice(c *gin.Context) {
 	middlewares.SetResp(
 		c,
 		enum.AirdbSuccess,
-		"list article",
+		vo.ListNotice(),
 	)
 }

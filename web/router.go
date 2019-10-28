@@ -57,7 +57,6 @@ func NewRouter() *gin.Engine {
 	folder(v1API)
 	log(v1API)
 	menu(v1API)
-	notice(v1API)
 	question(v1API)
 	role(v1API)
 	role_relation(v1API)
@@ -85,6 +84,9 @@ func homeGroup(api *gin.RouterGroup) {
 
 	squareAPI := api.Group("/square")
 	squareAPI.GET("list", handlers.ListSquare)
+
+	noticeAPI := api.Group("/notice")
+	noticeAPI.GET("list", handlers.ListNotice)
 }
 
 func carousel(api *gin.RouterGroup) {
@@ -134,10 +136,7 @@ func menu(api *gin.RouterGroup) {
 	r := api.Group("/menu")
 	r.GET("query", handlers.QueryMenu)
 }
-func notice(api *gin.RouterGroup) {
-	r := api.Group("/notice")
-	r.GET("query", handlers.QueryNotice)
-}
+
 func question(api *gin.RouterGroup) {
 	r := api.Group("/question")
 	r.GET("query", handlers.QueryQuestion)

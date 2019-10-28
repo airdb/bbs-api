@@ -46,25 +46,4 @@ func ListSquare() []*Square {
 		fmt.Println("xxxx", a.Name)
 	}
 	return aa
-	/*
-		po.ListSquare()
-		var square []*Square
-
-		s := Square{
-			ID:         3,
-			TagTypeID:  2,
-			Sort:       1,
-			Status:     1,
-			CreateUser: 2,
-			Flag:       1,
-			Name:       "前端",
-			Title:      "前端开发",
-			Image:      "https://www.lyh.red/file/首页轮播_20190418155210_g6fk/20190418160520_8hee.png",
-		}
-
-		square = append(square, &s)
-
-		return square
-
-	*/
 }

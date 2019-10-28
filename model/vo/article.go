@@ -17,11 +17,11 @@ type ListArticleResp struct {
 }
 
 type Article struct {
-	ID      uint   `json:"id"`
-	Title   string `json:"title"`
-	Content string `json:"content"`
-	Flag    uint   `json:"flag"`
-	CreatedBy uint `json:"created_by"`
+	ID        uint      `json:"id"`
+	Title     string    `json:"title"`
+	Content   string    `json:"content"`
+	Flag      uint      `json:"flag"`
+	CreatedBy uint      `json:"created_by"`
 	CreatedAt time.Time `json:"created_at"`
 }
 
@@ -47,11 +47,11 @@ func QueryBBSByKeyword(keyword string) []*po.MinaArticle {
 
 func FromPoArticle(pArticle *po.Article) *Article {
 	return &Article{
-		ID:      pArticle.ID,
-		Content: pArticle.Content,
-		Flag:    pArticle.Flag,
-		Title:   pArticle.Title,
-		CreatedBy:pArticle.CreatedBy,
+		ID:        pArticle.ID,
+		Content:   pArticle.Content,
+		Flag:      pArticle.Flag,
+		Title:     pArticle.Title,
+		CreatedBy: pArticle.CreatedBy,
 		CreatedAt: pArticle.CreatedAt,
 	}
 

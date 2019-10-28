@@ -41,11 +41,11 @@ type MinaArticle struct {
 
 type Article struct {
 	gorm.Model
-	Name    string `json:"name"`
-	Title   string `json:"title"`
-	Flag    uint   `json:"flag"`
-	Content string `json:"content"`
-	CreatedBy uint `json:"created_by"`
+	Name      string `json:"name"`
+	Title     string `json:"title"`
+	Flag      uint   `json:"flag"`
+	Content   string `json:"content"`
+	CreatedBy uint   `json:"created_by"`
 }
 
 func getDefaultDBName() (dbName string) {
