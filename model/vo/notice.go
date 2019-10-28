@@ -10,31 +10,31 @@ type ListNoticeResp struct {
 }
 
 type Notice struct {
-	ID uint `json:"id"`
-	Href string `json:"href"`
+	ID      uint   `json:"id"`
+	Href    string `json:"href"`
 	Content string `json:"content"`
-	Flag uint `json:"flag"`
-	Status uint `json:"status"`
+	Flag    uint   `json:"flag"`
+	Status  uint   `json:"status"`
 }
 
-func FromPoNotice(pNotice *po.Notice) *Notice{
-	return &Notice {
-		ID: pNotice.ID,
-		Href:pNotice.Href,
-		Content:pNotice.Content,
-		Flag:pNotice.Flag,
-		Status:pNotice.Status,
+func FromPoNotice(pNotice *po.Notice) *Notice {
+	return &Notice{
+		ID:      pNotice.ID,
+		Href:    pNotice.Href,
+		Content: pNotice.Content,
+		Flag:    pNotice.Flag,
+		Status:  pNotice.Status,
 	}
 }
 
 func FromPoNotices(pNotices []*po.Notice) (vNotices []*Notice) {
-	for _, notice := range pNotices{
+	for _, notice := range pNotices {
 		vNotices = append(vNotices, FromPoNotice(notice))
 	}
 
 	return
 }
 
-func ListNotice() []*Notice{
+func ListNotice() []*Notice {
 	return FromPoNotices(po.ListNotice())
 }
