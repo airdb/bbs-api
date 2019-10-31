@@ -8,8 +8,8 @@ import (
 type ListArticleReq struct {
 }
 
+// Article []*string `json:"Article"`
 type ListArticleResp struct {
-	// Article []*string `json:"Article"`
 	Result   []*Article `json:"result"`
 	CurPage  uint       `json:"curPage"`
 	PageSize uint       `json:"pageSize"`

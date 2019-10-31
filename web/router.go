@@ -43,11 +43,8 @@ func NewRouter() *gin.Engine {
 	// Area APIs.
 	area(v1API)
 
-	// Artciles APIs.
 	homeGroup(v1API)
 
-	// Carousels APIs.
-	carousel(v1API)
 	charts(v1API)
 	column(v1API)
 	count(v1API)
@@ -77,6 +74,7 @@ func area(api *gin.RouterGroup) {
 }
 
 func homeGroup(api *gin.RouterGroup) {
+	// Artciles APIs.
 	artilceAPI := api.Group("/article")
 	artilceAPI.GET("list", handlers.ListArticle)
 	artilceAPI.GET("query", handlers.QueryArticle)
@@ -87,11 +85,10 @@ func homeGroup(api *gin.RouterGroup) {
 
 	noticeAPI := api.Group("/notice")
 	noticeAPI.GET("list", handlers.ListNotice)
-}
 
-func carousel(api *gin.RouterGroup) {
-	r := api.Group("/carousel")
-	r.GET("query", handlers.QueryCarousel)
+	// Carousels APIs.
+	carouselAPI := api.Group("/carousel")
+	carouselAPI.GET("list", handlers.ListCarousel)
 }
 
 func charts(api *gin.RouterGroup) {
