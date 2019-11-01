@@ -1,7 +1,8 @@
 package handlers
 
 import (
-	"github.com/airdb/bbs-api/mobel/vo"
+	"github.com/airdb/bbs-api/model/vo"
+	"github.com/airdb/sailor/enum"
 	"github.com/airdb/sailor/gin/middlewares"
 	"github.com/gin-gonic/gin"
 )
@@ -16,9 +17,11 @@ import (
 // @Success 200 {object} vo.ListArticleResp
 // @Router /article/list [get]
 func ListArticle(c *gin.Context) {
+
 	middlewares.SetResp(
 		c,
-		"list article",
+		enum.AirdbSuccess,
+		vo.ListArticle(),
 	)
 }
 
@@ -34,6 +37,7 @@ func ListArticle(c *gin.Context) {
 func QueryArticle(c *gin.Context) {
 	middlewares.SetResp(
 		c,
+		enum.AirdbSuccess,
 		"query article",
 	)
 }
@@ -77,4 +81,3 @@ func QueryBBS(c *gin.Context) {
 	msg += "(出处: 宝贝回家论坛)\n"
 	c.String(200, msg)
 }
-
