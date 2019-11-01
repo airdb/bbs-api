@@ -25,7 +25,8 @@ jobs:
     - name: Test
       run: |
           echo ${{ secrets.DevConfig }} > conf/dev.json
-          go test -v
+          ls -lh conf/dev.json
+          go test -v .
 
     - name: Build
       run: |
