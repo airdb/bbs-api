@@ -16,6 +16,6 @@ type Notice struct {
 }
 
 func ListNotice() (notices []*Notice) {
-	dbutils.DefaultDB().Table("notice_tab").Debug().Find(&notices)
+	dbutils.DefaultDB().Table("notice_tab").Find(&notices)
 	return
 }

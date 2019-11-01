@@ -2,6 +2,7 @@ package web
 
 import (
 	"fmt"
+
 	_ "github.com/airdb/bbs-api/docs"
 	"github.com/airdb/bbs-api/web/handlers"
 	"github.com/airdb/sailor/config"
