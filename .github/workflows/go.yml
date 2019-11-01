@@ -28,6 +28,7 @@ jobs:
           go test -v
 
     - name: Build
+      run: |
         GO111MODULE=off go get github.com/swaggo/swag/cmd/swag
         export PATH=$PATH:$HOME/go/bin
         swag init -g web/router.go
