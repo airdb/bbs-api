@@ -22,7 +22,7 @@ jobs:
         go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
         PATH=$PATH:$HOME/go/bin golangci-lint run
         mkdir conf
-        echo "${{ secrets.DevConfig }}" > conf/dev.json
+        echo '${{ secrets.DevConfig }}' > conf/dev.json
 
     - name: Test
       run: |
