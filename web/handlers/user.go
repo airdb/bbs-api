@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"github.com/airdb/bbs-api/model/vo"
 	"github.com/airdb/sailor/enum"
 	"github.com/airdb/sailor/gin/middlewares"
 	"github.com/gin-gonic/gin"
@@ -20,5 +21,22 @@ func QueryUser(c *gin.Context) {
 		c,
 		enum.AirdbSuccess,
 		"list article",
+	)
+}
+
+// UserLogin godoc
+// @Summary User login
+// @Description User login
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param req body vo.LoginReq true "user"
+// @Success 200 {object} vo.LoginResp
+// @Router /user/login [post]
+func LoginUser(c *gin.Context) {
+	middlewares.SetResp(
+		c,
+		enum.AirdbSuccess,
+		vo.Login(),
 	)
 }

@@ -92,6 +92,12 @@ func homeGroup(api *gin.RouterGroup) {
 	carouselAPI.GET("list", handlers.ListCarousel)
 }
 
+func user(api *gin.RouterGroup) {
+	userAPI := api.Group("/user")
+	userAPI.POST("login", handlers.LoginUser)
+	userAPI.GET("query", handlers.QueryUser)
+}
+
 func charts(api *gin.RouterGroup) {
 	r := api.Group("/charts")
 	r.GET("query", handlers.QueryCharts)
@@ -163,7 +169,4 @@ func topic(api *gin.RouterGroup) {
 	r.GET("query", handlers.QueryTopic)
 }
 
-func user(api *gin.RouterGroup) {
-	r := api.Group("/user")
-	r.GET("query", handlers.QueryUser)
-}
+
