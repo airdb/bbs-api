@@ -9,6 +9,6 @@ type LoginResp struct {
 
 func Login() *LoginResp {
 
-	resp := &LoginResp{Token:"hello_login"}
+	resp := &LoginResp{Token: "hello_login"}
 	return resp
 }

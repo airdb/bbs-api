@@ -96,6 +96,7 @@ func user(api *gin.RouterGroup) {
 	userAPI := api.Group("/user")
 	userAPI.POST("login", handlers.LoginUser)
 	userAPI.GET("query", handlers.QueryUser)
+	userAPI.OPTIONS("login", handlers.LoginUser)
 }
 
 func charts(api *gin.RouterGroup) {
@@ -168,5 +169,3 @@ func topic(api *gin.RouterGroup) {
 	r := api.Group("/topic")
 	r.GET("query", handlers.QueryTopic)
 }
-
-

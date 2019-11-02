@@ -18,19 +18,19 @@ jobs:
 
     - name: Lint
       run: |
-        go mod download
-        go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
-        PATH=$PATH:$HOME/go/bin golangci-lint run
-        mkdir conf
-        echo '${{ secrets.DevConfig }}' > conf/dev.json
+          go mod download
+          go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+          PATH=$PATH:$HOME/go/bin golangci-lint run
 
     - name: Test
       run: |
+          mkdir conf
+          echo '${{ secrets.DevConfig }}' > conf/dev.json
           ls -lh conf/dev.json
           go test -v .
 
     - name: Build
       run: |
-        GO111MODULE=off go get github.com/swaggo/swag/cmd/swag
-        export PATH=$PATH:$HOME/go/bin
-        swag init -g web/router.go
+          GO111MODULE=off go get github.com/swaggo/swag/cmd/swag
+          export PATH=$PATH:$HOME/go/bin
+          swag init -g web/router.go
