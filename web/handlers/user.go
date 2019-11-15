@@ -34,6 +34,12 @@ func QueryUser(c *gin.Context) {
 // @Success 200 {object} vo.LoginResp
 // @Router /user/login [post]
 func LoginUser(c *gin.Context) {
+	var req vo.LoginReq
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.String(200, "OK")
+		return
+	}
+
 	middlewares.SetResp(
 		c,
 		enum.AirdbSuccess,
