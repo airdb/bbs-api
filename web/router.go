@@ -27,9 +27,6 @@ func NewRouter() *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
 
 	router := gin.New()
-	router.Use(
-		middlewares.Jsonifier(),
-	)
 
 	// router.NoRoute(middlewares.Default404)
 
@@ -39,6 +36,9 @@ func NewRouter() *gin.Engine {
 	RobotAPI.GET("query", handlers.QueryBBS)
 
 	v1API := router.Group("/apis/bbs/v1")
+	v1API.Use(
+		middlewares.Jsonifier(),
+	)
 	swaggerHandlers.RegisterSwagger(v1API)
 
 	// Area APIs.
