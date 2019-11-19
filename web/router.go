@@ -42,36 +42,11 @@ func NewRouter() *gin.Engine {
 	swaggerHandlers.RegisterSwagger(v1API)
 
 	// Area APIs.
-	area(v1API)
-
 	homeGroup(v1API)
 
-	charts(v1API)
-	column(v1API)
-	count(v1API)
-	dataPerms(v1API)
-	draft(v1API)
-	file(v1API)
-	folder(v1API)
-	log(v1API)
-	menu(v1API)
-	question(v1API)
-	role(v1API)
-	role_relation(v1API)
-	tag(v1API)
-	tagRelation(v1API)
-	topic(v1API)
-	user(v1API)
+	apiGroup2(v1API)
 
 	return router
-}
-
-func area(api *gin.RouterGroup) {
-	r := api.Group("/area")
-	r.GET("list", handlers.ListArea)
-	r.GET("query", handlers.QueryArea)
-	r.GET("update", handlers.UpdateArea)
-
 }
 
 func homeGroup(api *gin.RouterGroup) {
@@ -80,6 +55,11 @@ func homeGroup(api *gin.RouterGroup) {
 	artilceAPI.GET("list", handlers.ListArticle)
 	artilceAPI.GET("query", handlers.QueryArticle)
 	artilceAPI.GET("create", handlers.QueryArticle)
+
+	areaAPI := api.Group("/area")
+	areaAPI.GET("list", handlers.ListArea)
+	areaAPI.GET("query", handlers.QueryArea)
+	areaAPI.GET("update", handlers.UpdateArea)
 
 	squareAPI := api.Group("/square")
 	squareAPI.GET("list", handlers.ListSquare)
@@ -92,80 +72,54 @@ func homeGroup(api *gin.RouterGroup) {
 	carouselAPI.GET("list", handlers.ListCarousel)
 }
 
-func user(api *gin.RouterGroup) {
+func apiGroup2(api *gin.RouterGroup) {
 	userAPI := api.Group("/user")
 	userAPI.POST("login", handlers.LoginUser)
 	userAPI.GET("query", handlers.QueryUser)
 	userAPI.OPTIONS("login", handlers.LoginUser)
-}
 
-func charts(api *gin.RouterGroup) {
-	r := api.Group("/charts")
-	r.GET("query", handlers.QueryCharts)
-}
+	chartAPI := api.Group("/charts")
+	chartAPI.GET("query", handlers.QueryCharts)
 
-func column(api *gin.RouterGroup) {
-	r := api.Group("/column")
-	r.GET("query", handlers.QueryColumn)
-}
+	columnAPI := api.Group("/column")
+	columnAPI.GET("query", handlers.QueryColumn)
 
-func count(api *gin.RouterGroup) {
-	r := api.Group("/count")
-	r.GET("query", handlers.QueryCount)
-}
+	countAPI := api.Group("/count")
+	countAPI.GET("query", handlers.QueryCount)
 
-func dataPerms(api *gin.RouterGroup) {
-	r := api.Group("/data_perms")
-	r.GET("query", handlers.QueryDataPerms)
-}
+	dataPermsAPI := api.Group("/data_perms")
+	dataPermsAPI.GET("query", handlers.QueryDataPerms)
 
-func draft(api *gin.RouterGroup) {
-	r := api.Group("/draft")
-	r.GET("query", handlers.QueryDraft)
-}
-func file(api *gin.RouterGroup) {
-	r := api.Group("/file")
-	r.GET("query", handlers.QueryFile)
-}
-func folder(api *gin.RouterGroup) {
-	r := api.Group("/folder")
-	r.GET("query", handlers.QueryFolder)
-}
+	draftAPI := api.Group("/draft")
+	draftAPI.GET("query", handlers.QueryDraft)
 
-func log(api *gin.RouterGroup) {
-	r := api.Group("/log")
-	r.GET("query", handlers.QueryLog)
-}
+	fileAPI := api.Group("/file")
+	fileAPI.GET("query", handlers.QueryFile)
 
-func menu(api *gin.RouterGroup) {
-	r := api.Group("/menu")
-	r.GET("query", handlers.QueryMenu)
-}
+	folderAPI := api.Group("/folder")
+	folderAPI.GET("query", handlers.QueryFolder)
 
-func question(api *gin.RouterGroup) {
-	r := api.Group("/question")
-	r.GET("query", handlers.QueryQuestion)
-}
-func role(api *gin.RouterGroup) {
-	r := api.Group("/role")
-	r.GET("query", handlers.QueryRole)
-}
-func role_relation(api *gin.RouterGroup) {
-	r := api.Group("/role_relation")
-	r.GET("query", handlers.QueryRoleRelation)
-}
+	logAPI := api.Group("/log")
+	logAPI.GET("query", handlers.QueryLog)
 
-func tag(api *gin.RouterGroup) {
-	r := api.Group("/tag")
-	r.GET("query", handlers.QueryTag)
-}
+	menuAPI := api.Group("/menu")
+	menuAPI.GET("query", handlers.QueryMenu)
 
-func tagRelation(api *gin.RouterGroup) {
-	r := api.Group("/tag_relation")
-	r.GET("query", handlers.QueryTagRelation)
-}
+	questionAPI := api.Group("/question")
+	questionAPI.GET("query", handlers.QueryQuestion)
 
-func topic(api *gin.RouterGroup) {
-	r := api.Group("/topic")
-	r.GET("query", handlers.QueryTopic)
+	roleAPI := api.Group("/role")
+	roleAPI.GET("query", handlers.QueryRole)
+
+	roleRelationAPI := api.Group("/role_relation")
+	roleRelationAPI.GET("query", handlers.QueryRoleRelation)
+
+	tagAPI := api.Group("/tag")
+	tagAPI.GET("query", handlers.QueryTag)
+
+	tarRelationAPI := api.Group("/tag_relation")
+	tarRelationAPI.GET("query", handlers.QueryTagRelation)
+
+	topicAPI := api.Group("/topic")
+	topicAPI.GET("query", handlers.QueryTopic)
 }
