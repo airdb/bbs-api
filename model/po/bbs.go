@@ -2,10 +2,10 @@ package po
 
 import (
 	"fmt"
+
 	"github.com/airdb/sailor/config"
 	"github.com/airdb/sailor/dbutils"
 	"github.com/airdb/sailor/enum"
-	"strings"
 )
 
 type PreForumPost struct {
@@ -19,10 +19,8 @@ type PreForumPost struct {
 }
 
 func getBBSDBName() (dbName string) {
-	env := strings.ToUpper(config.GetEnv())
-
 	dbName = "bbs"
-	if !enum.IsLiveEnv(env) {
+	if !enum.IsLiveEnv(config.GetEnv()) {
 		dbName = config.GetEnv() + "_" + dbName
 	}
 
