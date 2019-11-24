@@ -87,7 +87,7 @@ func QueryBBSByKeywords(keyword string) (articles []*MinaArticle) {
 
 func FirstOrCreateArticleDataFrom(article MinaArticle) (id uint) {
 	fmt.Println("xxx", getDefaultDBName())
-	db := dbutils.WriteDB(getDefaultDBName()).Debug().FirstOrCreate(&article, MinaArticle{DataFrom: article.DataFrom})
+	db := dbutils.WriteDB(getDefaultDBName()).Table("articles").Debug().FirstOrCreate(&article, MinaArticle{DataFrom: article.DataFrom})
 	if db.Error == nil {
 		id = article.ID
 	}
@@ -95,7 +95,7 @@ func FirstOrCreateArticleDataFrom(article MinaArticle) (id uint) {
 }
 
 func UpdateArticle(article MinaArticle) {
-	dbutils.WriteDB(getDefaultDBName()).Debug().Save(&article)
+	dbutils.WriteDB(getDefaultDBName()).Table("articles").Debug().Save(&article)
 }
 
 func ListArticle() (article []*Article) {
