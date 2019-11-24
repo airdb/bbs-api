@@ -66,15 +66,13 @@ func QueryBBSByKeywords(keyword string) (articles []*MinaArticle) {
 		keys[0] = "%" + keys[0] + "%"
 		keys[1] = "%" + keys[1] + "%"
 		keys[2] = "%" + keys[2] + "%"
-		// dbutils.ReadDB(dbName).Table("articles").Where(
-		dbutils.ReadDB(dbName).Where(
+		dbutils.ReadDB(dbName).Table("mina_article").Where(
 			"subject like ? and subject like ? and subject like ? ", keys[0], keys[1], keys[2],
 		).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
 	} else if len(keys) == 2 {
 		keys[0] = "%" + keys[0] + "%"
 		keys[1] = "%" + keys[1] + "%"
-		// dbutils.ReadDB(dbName).Table("articles").Where(
-		dbutils.ReadDB(dbName).Where(
+		dbutils.ReadDB(dbName).Table("mina_article").Where(
 			"subject like ? and subject like ? ", keys[0], keys[1],
 		).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
 	} else {
