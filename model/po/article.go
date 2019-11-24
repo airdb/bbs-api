@@ -66,18 +66,21 @@ func QueryBBSByKeywords(keyword string) (articles []*MinaArticle) {
 		keys[0] = "%" + keys[0] + "%"
 		keys[1] = "%" + keys[1] + "%"
 		keys[2] = "%" + keys[2] + "%"
-		dbutils.ReadDB(dbName).Table("articles").Where(
+		// dbutils.ReadDB(dbName).Table("articles").Where(
+		dbutils.ReadDB(dbName).Where(
 			"subject like ? and subject like ? and subject like ? ", keys[0], keys[1], keys[2],
 		).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
 	} else if len(keys) == 2 {
 		keys[0] = "%" + keys[0] + "%"
 		keys[1] = "%" + keys[1] + "%"
-		dbutils.ReadDB(dbName).Table("articles").Where(
+		// dbutils.ReadDB(dbName).Table("articles").Where(
+		dbutils.ReadDB(dbName).Where(
 			"subject like ? and subject like ? ", keys[0], keys[1],
 		).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
 	} else {
 		keys[0] = "%" + keys[0] + "%"
-		dbutils.ReadDB(dbName).Table("articles").Debug().Where(
+		// dbutils.ReadDB(dbName).Table("articles").Debug().Where(
+		dbutils.ReadDB(dbName).Debug().Where(
 			"subject like ?", keys[0],
 		).Select("subject, data_from").Order("missed_at desc").Limit(5).Find(&articles)
 	}
@@ -87,7 +90,8 @@ func QueryBBSByKeywords(keyword string) (articles []*MinaArticle) {
 
 func FirstOrCreateArticleDataFrom(article MinaArticle) (id uint) {
 	fmt.Println("xxx", getDefaultDBName())
-	db := dbutils.WriteDB(getDefaultDBName()).Table("articles").Debug().FirstOrCreate(&article, MinaArticle{DataFrom: article.DataFrom})
+	// db := dbutils.WriteDB(getDefaultDBName()).Table("articles").Debug().FirstOrCreate(&article, MinaArticle{DataFrom: article.DataFrom})
+	db := dbutils.WriteDB(getDefaultDBName()).Debug().FirstOrCreate(&article, MinaArticle{DataFrom: article.DataFrom})
 	if db.Error == nil {
 		id = article.ID
 	}
@@ -95,7 +99,8 @@ func FirstOrCreateArticleDataFrom(article MinaArticle) (id uint) {
 }
 
 func UpdateArticle(article MinaArticle) {
-	dbutils.WriteDB(getDefaultDBName()).Table("articles").Debug().Save(&article)
+	// dbutils.WriteDB(getDefaultDBName()).Table("articles").Debug().Save(&article)
+	dbutils.WriteDB(getDefaultDBName()).Debug().Save(&article)
 }
 
 func ListArticle() (article []*Article) {
